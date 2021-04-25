@@ -51,5 +51,28 @@ def onehotLabels(values):
     onehot_encoded = onehotEncoder.fit_transform(integerEncoded)
     return onehot_encoded
 
+def convertBinaryResults(predictedResults, threshold = 0.6):
+    binaryResults = []
+    
+    for i in range(predictedResults.shape[0]):
+        if(predictedResults[i] > threshold):
+            binaryResults.append(1)
+        else:
+            binaryResults.append(0)
+    
+    return np.array(binaryResults)
 
-preProcess("Dataset")
+def diff(groundTruth, predictedResults):
+    
+    size = groundTruth.shape[0]
+    diffResults = []
+    fails = 0
+    for i in range(size):
+        if(groundTruth[i] != predictedResults[i]):
+            fails = fails + 1
+            diffResults.append(False)
+        else:
+            diffResults.append(True)
+    
+    return fails, np.array(diffResults)
+    
