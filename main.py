@@ -6,8 +6,8 @@ Created on Sat Apr 17 02:54:13 2021
 @author: buzun
 """
 
-from preprocessing import preProcess
-from model import BasicModel
+from subprocesses import preProcess, convertBinaryResults, diff
+from models import BasicModel, CNN
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import tensorflow as tf
@@ -22,23 +22,26 @@ data = []
 labels = []
 data, labels = preProcess("Dataset")
 
-xTrainData, xTestData, yTrainData, yTestData = train_test_split(data, labels, test_size=0.25, random_state=2)
+xTrainData, xTestData, yTrainData, yTestData = train_test_split(data, labels, test_size=0.33, random_state=2)
 
 del data
 del labels
 
-print('\nNumber of training pairs: ', len(xTrainData))
-print('\nNumber of training pairs: ', len(xTestData))
-print('\nNumber of training pairs: ', len(yTrainData))
-print('\nNumber of training pairs: ', len(yTestData))
+print('\nNumber of xTrainData pairs: ', len(xTrainData))
+print('\nNumber of xTestData pairs: ', len(xTestData))
+print('\nNumber of yTrainData pairs: ', len(yTrainData))
+print('\nNumber of yTestData pairs: ', len(yTestData))
 #print('Number of validation pairs: ', len(validData))
 
 # Model build and fit
 model = BasicModel()
+model = CNN()
+model.compile(optimizer = "Adam", loss = 'binary_crossentropy', metrics = ['accuracy'])
+model.summary()
 history = model.fit(xTrainData, yTrainData,
-          batch_size = 16,      #dec
+          batch_size = 8,      #dec
           epochs = 35,           #inc
-          verbose = 1,
+          verbose = 2,
           validation_data = (xTestData, yTestData)
           )
 
@@ -47,7 +50,7 @@ model.save("my_h5_model.h5") # 699 MB
 model.save_weights("covid19_weights.h5") # 452 KB
 
 # Load weights
-model.load_weights("model_Adam_016_095.h5")
+model.load_weights("my_h5_model.h5")
 
 # Plotting #
 print(history.history.keys())
@@ -69,6 +72,29 @@ plt.xlabel('epoch')
 plt.legend(['train', 'validation'], loc='upper left')
 plt.show()
 
+# Evaluating
+testEvaluate = model.evaluate(xTestData, yTestData)
+print("loss: " + str(testEvaluate[0]) + "\t accuracy: " + str(testEvaluate[1]))
+
+# Prediction
 predictedModel = model.predict(xTestData)
-model.evaluate(xTestData, yTestData)
+binaryResults = convertBinaryResults(predictedModel, 0.6)
+fails, diffResults = diff(yTestData, binaryResults)
+print("fails = " + str(fails))
+
+
+
+
+
+
+
+    
+    
+
+    
+    
+    
+    
+    
+    
 
