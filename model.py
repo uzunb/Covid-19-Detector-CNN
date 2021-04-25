@@ -42,7 +42,7 @@ def BasicModel(inputSize = (256,256,1)):
     dense = Dense(units = 64, activation="relu")(drop)
     drop = Dropout(0.4)(dense)
     dense = Dense(units = 32, activation="relu")(drop)
-    output = Dense(units = 1, activation="sigmoid")(dense)
+    output = Dense(units = 2, activation="sigmoid")(dense) #son dense katmanı = class sayısı
         
     model = Model(inputs = inputs, outputs = output)
     model.compile(optimizer = Adam(lr=0.0001), loss = 'binary_crossentropy', metrics = ['accuracy'])
@@ -67,18 +67,23 @@ def CNN(inputSize = (256,256,1)):
     model.add(LeakyReLU(alpha=0.1))
     model.add(MaxPooling2D(pool_size=(2, 2),padding='same'))
 
-    model.add(Conv2D(64, (3, 3), activation='relu',padding='same'))
+    model.add(Conv2D(128, (3, 3), activation='relu',padding='same'))
     model.add(LeakyReLU(alpha=0.1))
     model.add(MaxPooling2D(pool_size=(2, 2),padding='same'))
 
-    model.add(Conv2D(64, (3, 3), activation='relu',padding='same'))
+    model.add(Conv2D(256, (3, 3), activation='relu',padding='same'))
+    model.add(LeakyReLU(alpha=0.1))
+    model.add(MaxPooling2D(pool_size=(2, 2),padding='same'))
+    
+    model.add(Conv2D(256, (3, 3), activation='relu',padding='same'))
     model.add(LeakyReLU(alpha=0.1))
     model.add(MaxPooling2D(pool_size=(2, 2),padding='same'))
 
     model.add(Flatten())
-    model.add(Dense(128, activation='relu'))
+    model.add(Dense(256, activation='relu'))
     model.add(LeakyReLU(alpha=0.1))
-    model.add(Dense(2, activation='softmax'))
+    model.add(Dense(2, activation='softmax')) # son dense katmanı = class sayısı
+    model.compile(optimizer = Adam(lr=0.0001), loss = 'binary_crossentropy', metrics = ['accuracy'])
     return model
 
 def Covid19Model():
@@ -117,8 +122,6 @@ def Covid19Model():
         
     return classifier
     
-
-
 
 def convBlock(inp, convs, skip=True):
 	x = inp

@@ -27,7 +27,7 @@ def preProcess(imgPath):
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)        
             img = cv2.resize(img, (width, height))
             dataset.append([img, directory])
-    
+            
     # labeling 
     data, labels = zip(*dataset)
     
@@ -38,7 +38,7 @@ def preProcess(imgPath):
     # covid : 0
     # non-covid : 1
     labels = onehotLabels(labels)
-    labels = labels[:, 0:1]
+    labels = labels[:, 0:2]
     
     
     return data, labels
@@ -52,4 +52,4 @@ def onehotLabels(values):
     return onehot_encoded
 
 
-preProcess("Dataset")
+data , label = preProcess("Dataset")
