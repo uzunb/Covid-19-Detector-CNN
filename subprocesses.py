@@ -38,8 +38,6 @@ def preProcess(imgPath):
     # covid : 0
     # non-covid : 1
     labels = onehotLabels(labels)
-    labels = labels[:, 0:2]
-    
     
     return data, labels
 
@@ -51,6 +49,7 @@ def onehotLabels(values):
     onehot_encoded = onehotEncoder.fit_transform(integerEncoded)
     return onehot_encoded
 
+# for a column arrays
 def convertBinaryResults(predictedResults, threshold = 0.6):
     binaryResults = []
     
@@ -62,7 +61,7 @@ def convertBinaryResults(predictedResults, threshold = 0.6):
     
     return np.array(binaryResults)
 
-
+# for a column arrays
 def diff(groundTruth, predictedResults):
     
     size = groundTruth.shape[0]

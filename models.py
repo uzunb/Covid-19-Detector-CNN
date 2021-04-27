@@ -79,6 +79,8 @@ def CNN(inputSize = (256,256,1)):
     model.add(Dense(128, activation='relu'))
     model.add(LeakyReLU(alpha=0.1))
     model.add(Dense(2, activation='softmax'))
+    
+    model.compile(optimizer = Adam(lr=0.0001), loss = 'binary_crossentropy', metrics = ['accuracy'])
     return model
 
 def Covid19Model():
