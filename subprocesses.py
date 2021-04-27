@@ -39,7 +39,7 @@ def preProcess(imgPath):
     # non-covid : 1
     labels = onehotLabels(labels)
     
-    return data, labels
+    return data, labels, dataset
 
 def onehotLabels(values):
     labelEncoder = LabelEncoder()

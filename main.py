@@ -18,14 +18,11 @@ if len(physical_devices) > 0:
    tf.config.experimental.set_memory_growth(physical_devices[0], True)
 
 #%% PreProcessing 
-data = []
-labels = []
 
-data, labels = preProcess("Dataset") 
+data, labels, dataset = preProcess("Dataset") 
 xTrainData, xTestData, yTrainData, yTestData = train_test_split(data, labels, test_size=0.25, random_state=2)
 
-del data
-del labels
+
 
 print('\nNumber of xTrainData pairs: ', len(xTrainData))
 print('\nNumber of xTestData pairs: ', len(xTestData))
@@ -93,7 +90,15 @@ plt.xlabel('epoch')
 plt.legend(['train', 'validation'], loc='upper left')
 plt.show()
 
-
+fig, axes = plt.subplots(nrows=3, ncols=3, figsize=(10, 10),
+                        subplot_kw={'xticks': [], 'yticks': []})
+from PIL import Image
+for i, ax in enumerate(axes.flat):
+    img = Image.fromarray(dataset[i][0])
+    ax.imshow(img)
+    ax.set_title(dataset[i][1])
+plt.tight_layout()
+plt.show()
 #%% Prediction
 predictedModel = model.predict(xTestData)
 binaryResults = convertBinaryResults(predictedModel, 0.6)
