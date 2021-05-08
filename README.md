@@ -25,13 +25,13 @@ Used 1000s of normal and covid images.
 
 NORMAL                   |  COVID19
 :-------------------------:|:-------------------------:
-![normal](https://raw.githubusercontent.com/uzunb/Covid-19-Detector-CNN/main/images/normal.png?token=AJLHAF6QD326PGY6CYFXD3TAS2PQ6)    |  ![covid](https://raw.githubusercontent.com/uzunb/Covid-19-Detector-CNN/main/images/covid.png?token=AJLHAF3G6EHNI4QEN5UXNGTAS2PPM)
+![normal](https://user-images.githubusercontent.com/39219223/117543910-89614b00-b027-11eb-8592-bd735dea83ee.png)    |  ![covid](https://user-images.githubusercontent.com/39219223/117543885-646cd800-b027-11eb-99f4-f0007796dbf5.png)
     
 for the full dataset : https://www.kaggle.com/tawsifurrahman/covid19-radiography-database  
 ------
 
 ### Model
-![model_plot](https://raw.githubusercontent.com/uzunb/Covid-19-Detector-CNN/main/images/model_plot.png?token=AJLHAF732JMMWGULXPOU5ULAS2TBC) 
+![model_plot](https://user-images.githubusercontent.com/39219223/117543907-81a1a680-b027-11eb-800f-fb586bcf89b5.png)
 
 ---------
 ### Train
@@ -45,13 +45,12 @@ validation_split= 0.25
 
 ACCURACY                  |  LOSS 
 :-------------------------:|:-------------------------:
-![acc](https://raw.githubusercontent.com/uzunb/Covid-19-Detector-CNN/main/images/accuracy_figure.png?token=AJLHAF5YNEHZCETQNE7QJMTAS2PTM)    |  ![loss](https://raw.githubusercontent.com/uzunb/Covid-19-Detector-CNN/main/images/loss_figure.png?token=AJLHAF7SACNHSI2GSB6SGK3AS2PXS)
+![accuracy_figure](https://user-images.githubusercontent.com/39219223/117543874-574fe900-b027-11eb-81d1-8d9caf1448f3.png)    |  ![loss_figure](https://user-images.githubusercontent.com/39219223/117543900-78b0d500-b027-11eb-9313-efdc6a28b5d7.png)
 
 --------  
 
 ### Results
 
-![pred_fig](https://raw.githubusercontent.com/uzunb/Covid-19-Detector-CNN/main/images/pred_figure.png?token=AJLHAF37DPWK2VY2ZYPCVB3AS2QKM)
-
+![pred_figure](https://user-images.githubusercontent.com/39219223/117543917-9120ef80-b027-11eb-98d6-4b65e9531554.png)
 
 
