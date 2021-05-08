@@ -1,7 +1,7 @@
 # Covid-19-Detector-CNN
 
 ### Requirements & Dependencies
-I have tested this code using:
+Tested this code using:
 * Ubuntu 20.04.2 LTS
 * Python 3.8.5
 * Tensorflow 2.4.1
@@ -20,7 +20,7 @@ pip install -r requirements.txt
 
 ### Dataset
 This dataset contain 3616 COVID-19 positive cases along with 10,192 Normal, 6012 Lung Opacity (Non-COVID lung infection), and 1345 Viral Pneumonia images.  
-I used 1000s of normal and covid images.
+Used 1000s of normal and covid images.
 
 
 NORMAL                   |  COVID19
